@@ -10,22 +10,19 @@ class HomePage extends StatelessWidget {
         title: const Text('Demo'),
       ),
       body: SafeArea(
-        child: ListView(
-          children: List.generate(
-            100,
-            (index) {
-              return Column(
-                children: [
-                  Text('Text $index'),
-                  Divider(
-                    height: 10,
-                    thickness: 1,
-                    color: Colors.red,
-                  ),
-                ],
-              );
-            },
+        child: ListView.separated(
+          itemBuilder: (ctx, index) => ListTile(
+            title: Text('Person $index'),
+            subtitle: Text('Message $index'),
+            leading: CircleAvatar(
+              radius: 30,
+              backgroundColor: Colors.green,
+              backgroundImage: AssetImage('assets/images/img.jpg'),
+            ),
+            trailing: Text('1$index:00 PM'),
           ),
+          separatorBuilder: (ctx, index) => Divider(),
+          itemCount: 30,
         ),
       ),
     );
